@@ -1,0 +1,25 @@
+{
+  "name": "graphql_jasmine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SheenC/GraphQL_Jasmine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SheenC/GraphQL_Jasmine/issues"
+  },
+  "homepage": "https://github.com/SheenC/GraphQL_Jasmine#readme",
+  "dependencies": {
+    "@apollo/server": "^4.1.1",
+    "graphql": "^16.6.0"
+  }
+}
