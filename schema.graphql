@@ -1,0 +1,29 @@
+type Query {
+  doctors: [Doctor]
+  doctorById(doctor_id: ID): Doctor
+}
+
+type Doctor {
+    doctor_id: ID!
+    name: String
+		clinic: String
+		Specialty: String
+		timeslots: [String]
+		appointments: [Appointment]
+}
+
+type Patient {
+		patient_id: ID!
+		name: String
+		appointments: [Appointment]
+}
+
+type Appointment {
+		appointment_id: ID!
+		time: String
+		doctor_id: ID
+		patient_id: ID
+}
+
+
+
