@@ -15,9 +15,9 @@ type Patient {
 
 type Appointment {
 		appointment_id: ID!
-		time: String
-		doctor_id: ID
-		patient_id: ID
+		time: String!
+		doctor_id: ID!
+		patient_id: ID!
 }
 
 type Query {

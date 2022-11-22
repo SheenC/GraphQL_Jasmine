@@ -14,18 +14,30 @@ const Query = {
     doctors: () => db.doctors,
     doctorNameById: (root, args, context, info) => {
         const doctor = db.doctors.filter(d => d.doctor_id === args.doctor_id)
+        if (doctor[0] === undefined) {
+            throw 'The doctor doesn’t exist!'
+        }
         return doctor[0].name
     },
     doctorClinicById: (root, args, context, info) => {
         const doctor = db.doctors.filter(d => d.doctor_id === args.doctor_id)
+        if (doctor[0] === undefined) {
+            throw 'The doctor doesn’t exist!'
+        }
         return doctor[0].clinic
     },
     doctorSpecialtyById: (root, args, context, info) => {
         const doctor = db.doctors.filter(d => d.doctor_id === args.doctor_id)
+        if (doctor[0] === undefined) {
+            throw 'The doctor doesn’t exist!'
+        }
         return doctor[0].specialty
     },
     doctorTimeslotsById: (root, args, context, info) => {
         const doctor = db.doctors.filter(d => d.doctor_id === args.doctor_id)
+        if (doctor[0] === undefined) {
+            throw 'The doctor doesn’t exist!'
+        }
         return doctor[0].timeslots
     }
 }
@@ -33,6 +45,9 @@ const Query = {
 const Mutation = {
     addAppointment: (root, args, context, info) => {
         const appoint_id = uuidv4()
+        if (args.time === undefined || args.doctor_id === undefined || args.patient_id === undefined) {
+            throw 'Lack of variables: time/doctor_id/patient_id!'
+        } 
         db.appointments.push({
             appointment_id: appoint_id,
             time: args.time,
@@ -42,17 +57,20 @@ const Mutation = {
         return db.appointments[db.appointments.length - 1].appointment_id
     },
     cancelAppointment : (root, args, context, info) => {
-        let cancel_id = 0
+        let cancel_id = -1
         for (let i = 0; i < db.appointments.length; i++) {
             if (db.appointments[i].appointment_id === args.appointment_id) {
                 cancel_id = db.appointments[i].appointment_id
                 db.appointments.splice(i, 1)
             }
         }
+        if (cancel_id === -1) {
+            throw ("The appointment doesn't exist!")
+        }
         return cancel_id
     },
     updatePatient: (root, args, context, info) => {
-        let update_id = 0
+        let update_id = -1
         for (let i = 0; i < db.appointments.length; i++) {
             if (db.appointments[i].appointment_id === args.appointment_id) {
                 update_id = db.appointments[i].appointment_id
@@ -64,10 +82,12 @@ const Mutation = {
                 }
             }
         }
+        if (update_id === -1) {
+            throw ("The appointment doesn't exist!")
+        }
         return update_id
     }
 }
-
 
 export {
     Doctor,
