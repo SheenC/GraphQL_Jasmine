@@ -1,8 +1,3 @@
-type Query {
-  doctors: [Doctor]
-  doctorById(doctor_id: ID): Doctor
-}
-
 type Doctor {
     doctor_id: ID!
     name: String
@@ -23,6 +18,20 @@ type Appointment {
 		time: String
 		doctor_id: ID
 		patient_id: ID
+}
+
+type Query {
+  doctors: [Doctor]
+  doctorNameById(doctor_id: ID): String
+  doctorClinicById(doctor_id: ID): String
+  doctorSpecialtyById(doctor_id: ID): String
+  doctorTimeslotsById(doctor_id: ID): [String]
+}
+
+type Mutation {
+		addAppointment(doctor_id: ID, patient_id: ID, time: String): ID
+    cancelAppointment(appointment_id: ID): ID
+    updatePatient(appointment_id: ID, name: String): ID
 }
 
 
