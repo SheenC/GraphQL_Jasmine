@@ -39,7 +39,6 @@ const Mutation = {
             doctor_id: args.doctor_id,
             patient_id: args.patient_id,
         })
-        console.log(db.appointments)
         return db.appointments[db.appointments.length - 1].appointment_id
     },
     cancelAppointment : (root, args, context, info) => {
@@ -50,7 +49,6 @@ const Mutation = {
                 db.appointments.splice(i, 1)
             }
         }
-        console.log(db.appointments)
         return cancel_id
     },
     updatePatient: (root, args, context, info) => {
@@ -66,8 +64,6 @@ const Mutation = {
                 }
             }
         }
-        console.log(db.appointments)
-        console.log(db.patients)
         return update_id
     }
 }
